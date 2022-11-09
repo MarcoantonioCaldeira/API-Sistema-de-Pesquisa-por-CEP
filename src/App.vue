@@ -1,7 +1,5 @@
 <template>
-  <div id="components">
     <Form />
-  </div>
 </template>
 
 <script>
@@ -17,12 +15,5 @@ export default {
 </script>
 
 <style>
-#components{
-  width: 30%;
-  height: 160px;
-  background-color: rgb(223, 216, 203);
-  margin-top: 20%;
-  margin-left: 34%;
-  border-radius: 5px;
-}
+
 </style>
