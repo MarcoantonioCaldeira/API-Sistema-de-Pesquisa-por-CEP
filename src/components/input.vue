@@ -1,6 +1,6 @@
 <template>
     <div class="frm-row">
-        <input type="text"  name="cep" id="cep"/>
+        <input type="text"  name="cep" id="cep" maxlength="8"/>
     </div>   
 </template>
 
@@ -9,15 +9,6 @@ export default{
     name: 'input'
 }
 
-let cep = document.querySelector('#cep');
-
-cep.value = '0509593450';
-
-cep.addEventListener('blur', function(e){
-    let cep = e.target.value;
-    let script = document.createElement('script');
-    script.src = 'https://viacep.com.br/ws/01001000/json/?callback=callback_name'
-})
 
 </script>
 <style>
