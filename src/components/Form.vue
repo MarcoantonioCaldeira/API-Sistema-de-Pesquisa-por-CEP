@@ -3,9 +3,10 @@
     <h2 class="titulo">Consulte o seu endereço com o seu CEP</h2>
     <p>Não utilize nº de casa/ apto/ lote/ <br>prédio ou abreviatura</p>
     <br><br>
-    <label>CEP</label>
-    <input type="text" v-model="cep" v-on:change="consulta_cep" maxlength="8">
+    <input type="text" v-model="cep" v-on:change="consulta_cep" maxlength="8" placeholder="CEP">
     <div id="resultado" v-if="cep_data != null ">
+  
+        <h2>Rua: </h2> {{cep_data.logradouro}}
         <h2>Bairro:</h2> {{cep_data.bairro}}
         <h2>Cidade:</h2> {{cep_data.localidade}}
         <h2>Estado:</h2> {{cep_data.uf}}
@@ -53,9 +54,9 @@ export default {
 </script>
 
 <style scoped>
-label{
+
+*{
   font-family: arial;
-  margin-left: 2%;
 }
 
 
@@ -83,7 +84,7 @@ label{
     display: block;
     background-color: rgb(206, 205, 205);
     width: calc(100% - 110px);
-    margin-left: 4%;
+    margin-left: 2%;
     margin-bottom: 15px;
 }
 
@@ -91,7 +92,7 @@ label{
     width: calc(101% - 110px);
     height: 500px;
     background-color: rgb(206, 205, 205);
-    margin-left: 4%;
+    margin-left: 2%;
     border-radius: 5px;
   }
 </style>
