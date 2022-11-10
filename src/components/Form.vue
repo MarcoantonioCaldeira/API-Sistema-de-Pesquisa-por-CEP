@@ -1,20 +1,20 @@
 <template>
   <div id="app">
-    <h2>Consulte o seu endereço com o seu CEP</h2>
+    <h2 class="titulo">Consulte o seu endereço com o seu CEP</h2>
     <p>Não utilize nº de casa/ apto/ lote/ <br>prédio ou abreviatura</p>
     <br><br>
     <label>CEP</label>
     <input type="text" v-model="cep" v-on:change="consulta_cep" maxlength="8">
-    <div v-if="cep_data != null ">
-        Bairro: {{cep_data.bairro}}
-        Cidade: {{cep_data.localidade}}
-        Estado: {{cep_data.uf}}
+    <div id="resultado" v-if="cep_data != null ">
+        <h2>Bairro:</h2> {{cep_data.bairro}}
+        <h2>Cidade:</h2> {{cep_data.localidade}}
+        <h2>Estado:</h2> {{cep_data.uf}}
     </div>
   </div>
 </template>
 
 <script>
- import axios from "axios";
+import axios from "axios";
 import { assertExpressionStatement } from '@babel/types';
 
 export default {
@@ -37,7 +37,6 @@ export default {
 
         console.log(response);
         self.cep_data = response.data;
-
         self.cep_keys = Object.keys( self.cep_data );
 
       })
@@ -51,8 +50,6 @@ export default {
   }
 }
 
-
-
 </script>
 
 <style scoped>
@@ -63,6 +60,11 @@ label{
 
 
   h2{
+    font-family: arial;
+    color:rgb(30, 134, 231)
+  }
+
+  .titulo{
     margin-left: 2%;
     font-family: arial;
     color:rgb(30, 134, 231)
@@ -84,4 +86,12 @@ label{
     margin-left: 4%;
     margin-bottom: 15px;
 }
+
+  #resultado{
+    width: calc(101% - 110px);
+    height: 500px;
+    background-color: rgb(206, 205, 205);
+    margin-left: 4%;
+    border-radius: 5px;
+  }
 </style>
