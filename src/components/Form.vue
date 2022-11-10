@@ -1,25 +1,15 @@
 <template>
-  <div>
+  <div id="app">
     <h2>Consulte o seu endereço com o seu CEP</h2>
     <p>Não utilize nº de casa/ apto/ lote/ <br>prédio ou abreviatura</p>
-    <form>
-      <label>CEP</label>
-      <input type="text" v-model="cep" v-on:change="consulta_cep" maxlength="8">
-      <div v-if="cep_data != null ">
-        Logradouro: {{cep_data.logradouro}}
-        <table>
-          <tr v-for="(item, index) in cep_keys">
-            <td>
-              {{item}}
-           </td>
-           <td>
-             {{ cep_data[item] }}
-          </td>
-
-          </tr>
-        </table>
-      </div>
-    </form>
+    <br><br>
+    <label>CEP</label>
+    <input type="text" v-model="cep" v-on:change="consulta_cep" maxlength="8">
+    <div v-if="cep_data != null ">
+        Bairro: {{cep_data.bairro}}
+        Cidade: {{cep_data.localidade}}
+        Estado: {{cep_data.uf}}
+    </div>
   </div>
 </template>
 
@@ -52,7 +42,7 @@ export default {
 
       })
       .catch(function (error){
-        console.log(error);
+        //console.log(error);
       })
       .finally(function () {
 
