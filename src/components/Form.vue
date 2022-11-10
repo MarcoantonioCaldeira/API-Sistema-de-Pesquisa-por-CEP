@@ -3,63 +3,56 @@
     <h2>Consulte o seu endereço com o seu CEP</h2>
     <p>Não utilize nº de casa/ apto/ lote/ <br>prédio ou abreviatura</p>
     <form>
-      <div class="frm-row">
-          <label for="cep">CEP</label>
-          <input type="text"  v-model="cep"  v-on:change="consulta_cep" id="cep" maxlength="8" >
-      </div>
-      <!--<div class="frm-row">
-          <label for="rua">Rua</label>
-          <input type="text" id="rua" > 
-          {{ cep_data.logradouro}}
-      </div>
-      <div class="frm-row">
-          <label for="bairro">Bairro</label>
-          <input type="text" id="bairro" >
-      </div>  
-      <div class="frm-row">
-          <label for="cidade">Cidade</label>   
-          <input type="text" id="cidade"> 
-          
-      </div>  
-      <div class="frm-row">
-          <label for="estado">Estado</label>
-          <input type="text"  id="estado" >
-      </div>!-->
-
-      <div v-if="cep_data != null">
+      <label>CEP</label>
+      <input type="text" v-model="cep" v-on:change="consulta_cep" maxlength="8">
+      <div v-if="cep_data != null ">
         Logradouro: {{cep_data.logradouro}}
+        <table>
+          <tr v-for="(item, index) in cep_keys">
+            <td>
+              {{item}}
+           </td>
+           <td>
+             {{ cep_data[item] }}
+          </td>
+
+          </tr>
+        </table>
       </div>
     </form>
   </div>
 </template>
 
 <script>
+ import axios from "axios";
 import { assertExpressionStatement } from '@babel/types';
-
 
 export default {
   name: 'Form',
   data(){
 
     return{
-      cep: "",
-      cep_data: null
-    }
+        cep: "",
+        cep_data: null,
+        cep_keys : []
+      }
   },
-  methods:{
+  methods: {
     consulta_cep(){
       var self = this;
 
-      axios.get('https://viacep.com.br/ws/'+this.cep+'/json/')
+      axios
+      .get('https://viacep.com.br/ws/'+this.cep+'/json/')
       .then(function (response) {
 
         console.log(response);
         self.cep_data = response.data;
 
+        self.cep_keys = Object.keys( self.cep_data );
+
       })
       .catch(function (error){
-
-        //console.log(error);
+        console.log(error);
       })
       .finally(function () {
 
