@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <h2 class="titulo">Consulte o seu endereço com o seu CEP</h2>
+    <h2 class="titulo">Consulte o endereço com o seu CEP</h2>
     <p>Não utilize nº de casa/ apto/ lote/ <br>prédio ou abreviatura</p>
     <br><br>
     <input type="text" v-model="cep" v-on:change="consulta_cep" maxlength="8" placeholder="CEP">
@@ -57,6 +57,7 @@ export default {
 
 *{
   font-family: arial;
+  color: white;
 }
 
 
